@@ -6,6 +6,8 @@ using System.Xml.Linq;
 
 namespace Bizagi.Services
 {
+    using System.Linq;
+
     public class BizagiValidator
     {
         private readonly List<IRuleValidator> validators;
@@ -23,9 +25,8 @@ namespace Bizagi.Services
         public List<Response> Validate(XElement doc) 
         {            
             var responses = new List<Response>();
-            foreach (var item in validators)
+            foreach (var response in this.validators.Select(item => item.Validate(doc)))
             {
-                var response = item.Validate(doc);
                 responses.AddRange(response);
             }
 
