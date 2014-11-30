@@ -15,7 +15,7 @@ namespace Bizagi.Services
         {
             validators = new List<IRuleValidator>() 
             {
-                new BPMN0102Validator(),
+                new Bpmn0102Validator(),
                 new Style0104Validator(),
                 new Style0115Validator(),
                 new Style0122Validator(),
