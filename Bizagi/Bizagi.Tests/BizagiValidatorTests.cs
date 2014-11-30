@@ -76,5 +76,20 @@ namespace Bizagi.Tests
             Assert.IsTrue(responses.Select(r => r.ElementId)
                 .Contains(Guid.Parse("d2fcd615-aa97-4f74-a8c1-3c55409b1d5a")));
         }
+
+        [TestMethod]
+        public void Sample2ShouldReturnErrorValidationResponses()
+        {
+            //arrange
+            var xml = XElement.Load("Sample 2.xpdl");
+            var validator = new BizagiValidator();
+
+            //act
+            var responses = validator.Validate(xml);
+
+            //assert
+            Assert.IsTrue(responses.Select(r => r.ElementId)
+                .Contains(Guid.Parse("4344453a-134d-4476-91ec-4793f03a4e69")));
+        }
     }
 }
