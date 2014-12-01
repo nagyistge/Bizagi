@@ -1,0 +1,41 @@
+﻿<div class="jumbotron">
+    <h1>Validador de Bizagi</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Suba un archivo XPDL</h2>
+        <p>El validador de Bizagi permite subir un archivo xpdl para que sea validado tomando en cuenta las reglas de BPMN</p>
+    </div>
+    <div>
+        <form enctype='multipart/form-data' method="POST">
+            <input id="fileupload" type="file" name="files[]" data-url="@Url.HttpRouteUrl("DefaultApi", new { controller = "BizagiValidator", action= "PostFile"})" />
+        </form>
+    </div>
+    
+    <h2>Errores:</h2>
+    <div id="errors"></div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryfileupload")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fileupload').fileupload({
+                dataType: 'json',
+                done: function (e, data) {
+                    alert('el archivo no presenta errores');
+                },
+                fail: function (e, data) {
+                    var errorsDiv = $("#errors");
+                    errorsDiv.empty();
+                    $.each(data.jqXHR.responseJSON, function(i, item) {
+
+                        errorsDiv.append('<p>Name: ' + item.ElementName + '</br>' + "Id: " + item.ElementId + '</br>' + 'XPath: ' + item.ElementXpath + '</br>' + 'Mensaje: ' + item.Message + '</p>');
+                    });
+                }
+            });
+        });
+    </script>
+}
+

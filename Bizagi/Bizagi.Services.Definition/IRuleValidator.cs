@@ -6,6 +6,6 @@ namespace Bizagi.Services.Definition
 {
     public interface IRuleValidator
     {
-        List<Response> Validate(XElement doc);
+        List<Error> Validate(XElement doc);
     }
 }

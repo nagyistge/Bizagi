@@ -8,12 +8,12 @@ namespace Bizagi.Services
 {
     using System.Linq;
 
-    public class BizagiValidator
+    public class BizagiValidator : IBizagiValidator
     {
-        private readonly List<IRuleValidator> validators;
+        private readonly List<IRuleValidator> _validators;
         public BizagiValidator()
         {
-            validators = new List<IRuleValidator>() 
+            _validators = new List<IRuleValidator>() 
             {
                 new Bpmn0102Validator(),
                 new Style0104Validator(),
@@ -22,15 +22,18 @@ namespace Bizagi.Services
                 new Style0123Validator()
             };
         }
-        public List<Response> Validate(XElement doc) 
+        public Response Validate(XElement doc) 
         {            
-            var responses = new List<Response>();
-            foreach (var response in this.validators.Select(item => item.Validate(doc)))
+            var errors = new List<Error>();
+            foreach (var response in _validators.Select(item => item.Validate(doc)))
             {
-                responses.AddRange(response);
+                errors.AddRange(response);
             }
 
-            return responses;
+            return new Response
+            {
+                Errors =  errors
+            };
         }
     }   
 }

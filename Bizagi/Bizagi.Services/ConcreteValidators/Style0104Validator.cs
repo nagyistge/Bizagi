@@ -10,9 +10,9 @@ namespace Bizagi.Services.ConcreteValidators
 {
     public class Style0104Validator : IRuleValidator
     {
-        public List<Response> Validate(XElement doc)
+        public List<Error> Validate(XElement doc)
         {
-            var responses = new List<Response>();
+            var responses = new List<Error>();
             XNamespace ns = "http://www.wfmc.org/2008/XPDL2.1";
             var processes = (from proccess in doc.Descendants(ns + "WorkflowProcess")
                                       select proccess);
@@ -27,7 +27,7 @@ namespace Bizagi.Services.ConcreteValidators
                     let count = activities.Count(a => a.Attribute("Name").Value == activityName)
                     where count > 1
                     select
-                        new Response
+                        new Error
                         {
                             ElementId = Guid.Parse(activity.Attribute("Id").Value),
                             ElementName = activity.Attribute("Name").Value,

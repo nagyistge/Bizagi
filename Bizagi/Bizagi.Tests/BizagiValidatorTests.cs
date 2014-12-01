@@ -17,13 +17,13 @@ namespace Bizagi.Tests
             var validator = new BizagiValidator();
             
             //act
-            var responses = validator.Validate(xml);
+            var response = validator.Validate(xml);
 
             //assert
             //Assert.IsTrue(responses.Count == 3);
-            Assert.IsTrue(responses.Select(r => r.ElementId)
+            Assert.IsTrue(response.Errors.Select(r => r.ElementId)
                 .Contains(Guid.Parse("6082a312-32d1-44bd-90a0-a055fd22f1b1")));
-            Assert.IsTrue(responses.Select(r => r.ElementId)
+            Assert.IsTrue(response.Errors.Select(r => r.ElementId)
                 .Contains(Guid.Parse("c18b9d3a-e828-43d7-bda9-794c8fc79e7a")));
         }
 
@@ -35,13 +35,13 @@ namespace Bizagi.Tests
             var validator = new BizagiValidator();
 
             //act
-            var responses = validator.Validate(xml);
+            var response = validator.Validate(xml);
 
             //assert
             //Assert.IsTrue(responses.Count == 2);
-            Assert.IsTrue(responses.Select(r => r.ElementId)
+            Assert.IsTrue(response.Errors.Select(r => r.ElementId)
                 .Contains(Guid.Parse("87d624f2-bd9b-412e-baed-c829a5740d25")));
-            Assert.IsTrue(responses.Select(r => r.ElementId)
+            Assert.IsTrue(response.Errors.Select(r => r.ElementId)
                 .Contains(Guid.Parse("e60e9639-7fa2-46dd-9a77-aaae3b3de4ff")));
         }
 
@@ -53,11 +53,11 @@ namespace Bizagi.Tests
             var validator = new BizagiValidator();
 
             //act
-            var responses = validator.Validate(xml);
+            var response = validator.Validate(xml);
 
             //assert
             //Assert.IsTrue(responses.Count == 2);
-            Assert.IsTrue(responses.Select(r => r.ElementId)
+            Assert.IsTrue(response.Errors.Select(r => r.ElementId)
                 .Contains(Guid.Parse("b097b926-3faa-43a2-8af9-0eeea24e1457")));
         }
 
@@ -69,11 +69,11 @@ namespace Bizagi.Tests
             var validator = new BizagiValidator();
 
             //act
-            var responses = validator.Validate(xml);
+            var response = validator.Validate(xml);
 
             //assert
             //Assert.IsTrue(responses.Count == 2);
-            Assert.IsTrue(responses.Select(r => r.ElementId)
+            Assert.IsTrue(response.Errors.Select(r => r.ElementId)
                 .Contains(Guid.Parse("d2fcd615-aa97-4f74-a8c1-3c55409b1d5a")));
         }
 
@@ -85,10 +85,10 @@ namespace Bizagi.Tests
             var validator = new BizagiValidator();
 
             //act
-            var responses = validator.Validate(xml);
+            var response = validator.Validate(xml);
 
             //assert
-            Assert.IsTrue(responses.Select(r => r.ElementId)
+            Assert.IsTrue(response.Errors.Select(r => r.ElementId)
                 .Contains(Guid.Parse("4344453a-134d-4476-91ec-4793f03a4e69")));
         }
     }

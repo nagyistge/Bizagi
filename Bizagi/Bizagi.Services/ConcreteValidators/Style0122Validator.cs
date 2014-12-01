@@ -10,7 +10,7 @@ namespace Bizagi.Services.ConcreteValidators
 {
     public class Style0122Validator : IRuleValidator
     {
-        public List<Response> Validate(XElement doc)
+        public List<Error> Validate(XElement doc)
         {
             XNamespace ns = "http://www.wfmc.org/2008/XPDL2.1";
             var activities = from intermediateEvent in doc.Descendants(ns + "IntermediateEvent")
@@ -32,7 +32,7 @@ namespace Bizagi.Services.ConcreteValidators
                                         where messageFlow.Attribute("Target").Value == activityId
                                         select messageFlow)
                     where !messageFlows.Any()
-                    select new Response
+                    select new Error
                     {
                         ElementId = Guid.Parse(activityId),
                         ElementName = activity.Attribute("Name").Value,

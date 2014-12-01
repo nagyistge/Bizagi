@@ -10,7 +10,7 @@ namespace Bizagi.Services.ConcreteValidators
 {
     public class Style0115Validator : IRuleValidator
     {
-        public List<Response> Validate(XElement doc)
+        public List<Error> Validate(XElement doc)
         {
             XNamespace ns = "http://www.wfmc.org/2008/XPDL2.1";
             var intermediateEvents = (from intermediateEvent in doc.Descendants(ns + "IntermediateEvent") 
@@ -22,7 +22,7 @@ namespace Bizagi.Services.ConcreteValidators
                 let label = activityElement.Attribute("Name").Value
                 where string.IsNullOrEmpty(label)
                 select
-                    new Response
+                    new Error
                     {
                         ElementId = Guid.Parse(activityElement.Attribute("Id").Value),
                         ElementName = label,
