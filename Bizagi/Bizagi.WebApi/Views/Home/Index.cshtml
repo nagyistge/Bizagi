@@ -33,6 +33,18 @@
 
                         errorsDiv.append('<p>Name: ' + item.ElementName + '</br>' + "Id: " + item.ElementId + '</br>' + 'XPath: ' + item.ElementXpath + '</br>' + 'Mensaje: ' + item.Message + '</p>');
                     });
+                },
+                add: function (e, data) {
+                    var goUpload = true;
+                    var uploadFile = data.files[0];
+                    if (!(/\.(xpdl)$/i).test(uploadFile.name)) {
+                        alert("Solo archivos .xpdl");
+                        goUpload = false;
+                    }
+
+                    if (goUpload == true) {
+                        data.submit();
+                    }
                 }
             });
         });
